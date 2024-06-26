@@ -1,0 +1,40 @@
+.sign-up-link {
+  color: blue;
+  cursor: pointer;
+}
+
+.sign-in {
+  background-image: url("https://t4.ftcdn.net/jpg/04/36/58/65/360_F_436586551_t4B08iIPjUvHvWCu6T1HDfMBn9BcQcSA.jpg");
+  background-size: cover;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+    background-color: #ffffff36;
+  padding: 30px;
+  border: 1px solid rgb(219, 207, 207);
+  border-radius: 1px;
+}
+
+
+.login-form2 {
+    background-color: #ffffff36;
+  padding: 20px;
+  margin-top: 5px;
+  border: 1px solid rgb(219, 207, 207);
+  border-radius: 1px;
+}
+
+#btn {
+    background-color: #1773ea;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 8px;
+}
