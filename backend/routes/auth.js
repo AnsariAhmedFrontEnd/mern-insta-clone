@@ -1,10 +1,10 @@
+require(dotenv).config;
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const USER = mongoose.model("USER");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { jwt_secret } = require("../keys");
 const requireLogin = require("../middlewares/requireLogin");
 
 router.post("/signup", (req, res) => {
@@ -61,7 +61,7 @@ router.post("/signin", (req, res) => {
       .then((match) => {
         if (match) {
           // return res.status(200).json({ message: "Signed in Successfully" });
-          const token = jwt.sign({ _id: savedUser.id }, jwt_secret);
+          const token = jwt.sign({ _id: savedUser.id }, process.env.jwt_secret);
           const { _id, name, userName, email } = savedUser;
           res.json({ token, user: { _id, name, userName, email } });
           console.log({ token, user: { _id, name, userName, email } });
@@ -78,7 +78,7 @@ router.post("/googleLogin", (req, res) => {
   if (email_verified) {
     USER.findOne({ email: email }).then((savedUser) => {
       if (savedUser) {
-        const token = jwt.sign({ _id: savedUser.id }, jwt_secret);
+        const token = jwt.sign({ _id: savedUser.id }, process.env.jwt_secret);
         const { _id, name, userName, email } = savedUser;
         res.json({ token, user: { _id, name, userName, email } });
         console.log({ token, user: { _id, name, userName, email } });
@@ -95,7 +95,7 @@ router.post("/googleLogin", (req, res) => {
           .save()
           .then((user) => {
             let userId = user._id.toString();
-            const token = jwt.sign({ _id: userId }, jwt_secret);
+            const token = jwt.sign({ _id: userId }, process.env.jwt_secret);
             const { _id, name, userName, email } = user;
             res.json({ token, user: { _id, name, userName, email } });
             console.log({ token, user: { _id, name, userName, email } });
